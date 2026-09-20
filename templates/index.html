@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NASA APOD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        input {
+            padding: 10px;
+            width: 220px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .apod {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .apod img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🚀 NASA Astronomy Picture of the Day</h1>
+
+    <form method="POST">
+        <label for="date">Select a date:</label>
+        <input
+            type="date"
+            id="date"
+            name="date"
+            required
+        >
+
+        <button type="submit">
+            Get APOD
+        </button>
+    </form>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if nasa_data %}
+        <div class="apod">
+            <h2>{{ nasa_data.title }}</h2>
+            <p><strong>Date:</strong> {{ nasa_data.date }}</p>
+            <p><strong>Media Type:</strong> {{ nasa_data.media_type }}</p>
+            {% if nasa_data.copyright %}
+                <p><strong>Copyright:</strong> {{ nasa_data.copyright }}</p>
+            {% endif %}
+            {% if nasa_data.credit %}
+                <p><strong>Credit:</strong> {{ nasa_data.credit }}</p>
+            {% endif %}
+            {% if nasa_data.url %}
+                <img src="{{ nasa_data.url }}" alt="{{ nasa_data.alt or nasa_data.title }}">
+            {% endif %}
+            <p><strong>Explanation:</strong> {{ nasa_data.explanation }}</p>
+            {% if nasa_data.permalink %}
+                <p><strong>Link:</strong> <a href="{{ nasa_data.permalink }}" target="_blank">Open article</a></p>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+
+</html>
