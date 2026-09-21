@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["python", "weather_app.py"]
+CMD ["python", "nasa_app.py"]
