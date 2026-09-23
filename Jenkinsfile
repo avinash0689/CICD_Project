@@ -18,7 +18,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t weather-app: .'
+                sh 'docker build -t nasa-app:2.0 .'
             }
         }
     }

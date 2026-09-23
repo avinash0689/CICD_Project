@@ -2,25 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: weather-app
+  name: nasa-app
 
 spec:
   replicas: 2
 
   selector:
     matchLabels:
-      app: weather-app
+      app: nasa-app
 
   template:
     metadata:
       labels:
-        app: weather-app
+        app: nasa-app
 
     spec:
       containers:
-        - name: weather-app
-          image: weather-app:2.0
+        - name: nasa-app2
+          image: nasa-app:2.0
           imagePullPolicy: IfNotPresent
 
           ports:
-            - containerPort: 5000
+            - containerPort: 5001
